@@ -18,13 +18,13 @@ Test cases for the add_integer function.
 
 >>> add_integer(4, "School")
 Traceback (most recent call last):
-    ...
-TypeError: a must be an integer or b must be an integer
+...
+TypeError: b must be an integer
 
->>> add_integer(None)
+>>> add_integer("reone", 7)
 Traceback (most recent call last):
-    ...
-TypeError: a must be an integer or b must be an integer
+...
+TypeError: a must be an integer
 
 >>> add_integer([])
 Traceback (most recent call last):
@@ -34,3 +34,4 @@ TypeError: a must be an integer
 >>> add_integer(float('inf'))
 Traceback (most recent call last):
 ...
+OverflowError: cannot convert float infinity to integer
