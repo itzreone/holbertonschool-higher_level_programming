@@ -1,47 +1,58 @@
->>> matrix = [
-... 	[1, 2, 3],
-... 	[4, 5, 6]
-... ]
+>>> matrix_divided = __import__('2-matrix_divided').matrix_divided
 
+>>> matrix = [[1, 2, 3], [4, 5, 6]]
 >>> matrix_divided(matrix, 2)
 [[0.5, 1.0, 1.5], [2.0, 2.5, 3.0]]
 
->>> matrix_divided(matrix, float('inf'))
+
+>>> matrix = [[50, 100, 150], [200, 250, 300]]
+>>> matrix_divided(matrix, 10)
+[[5.0, 10.0, 15.0], [20.0, 25.0, 30.0]]
+
+>>> matrix = [[-1, -2, -3], [-4, -5, -6]]
+>>> matrix_divided(matrix, -2)
+[[0.5, 1.0, 1.5], [2.0, 2.5, 3.0]]
+
+>>> matrix = [[0, 0, 0], [0, 0, 0]]
+>>> matrix_divided(matrix, 2)
 [[0.0, 0.0, 0.0], [0.0, 0.0, 0.0]]
 
->>> matrix_divided(matrix, "hbtn")
-Traceback (most recent call last):
-        ...
-TypeError: div must be a number
+>>> matrix = [[1]]
+>>> matrix_divided(matrix, 2)
+[[0.5]]
+
+>>> matrix = []
+>>> matrix_divided(matrix, 2)
+[]
 
 >>> matrix_divided(matrix, 0)
 Traceback (most recent call last):
-	...
+    ...
 ZeroDivisionError: division by zero
 
->>> matrix = "reone"
+>>> matrix_divided(matrix, -1)
+[]
 
->>> matrix_divided(matrix, 21)
+>>> matrix = [[1, 'a', 3], [4, 5, 6]]
+>>> matrix_divided(matrix, 3)
 Traceback (most recent call last):
-	...
+    ...
 TypeError: matrix must be a matrix (list of lists) of integers/floats
 
->>> matrix = [
-... 	[1, 2],
-... 	[3, 4, 5]
-... ]
-
->>> matrix_divided(matrix, 2)
+>>> matrix = [[1, 2, 3], [4, 5]]
+>>> matrix_divided(matrix, 3)
 Traceback (most recent call last):
-	...
+    ...
 TypeError: Each row of the matrix must have the same size
 
->>> matrix_divided()
+>>> matrix = [[1, 2, 3], [4, 5, 6]]
+>>> matrix_divided(matrix, 0)
 Traceback (most recent call last):
-	...
-TypeError: matrix_divided() missing 2 required positional arguments: 'matrix' and 'div'
+    ...
+ZeroDivisionError: division by zero
 
->>> matrix_divided([[1, 2, 3], [4, 5, 6]])
+>>> matrix = [[1, 2, 3], [4, 5, 6]]
+>>> matrix_divided(matrix, 'Ğ')
 Traceback (most recent call last):
-	...
-TypeError: matrix_divided() missing 1 required positional argument: 'div'
+    ...
+TypeError: div must be a number
