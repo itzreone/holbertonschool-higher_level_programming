@@ -5,10 +5,7 @@ these characters: ., ? and :"""
 
 def text_indentation(text):
     """
-    function that prints a text with 2 new lines after each /
-    of these characters: ., ? and :
-    unit tests located in tests/5-text_indentation.txt
-    checks for type errors
+    Function printing text with two blank lines after each of ?, : and .
     """
     if not isinstance(text, str):
         raise TypeError("text must be a string")

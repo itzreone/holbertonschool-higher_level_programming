@@ -1,12 +1,10 @@
 #!/usr/bin/python3
-"""3-say_my_name.py and tests/3-say_my_name.txt"""
+"""Module containing say_my_name function"""
 
 
 def say_my_name(first_name, last_name=""):
     """
     My name is <first name> <last name>
-    unit tests located in tests/3-say_my_name.txt
-    checks for type errors
     """
     if not isinstance(first_name, str):
         raise TypeError("first_name must be a string")

@@ -5,10 +5,6 @@
 def print_square(size):
     """
     print_square - prints square usign #
-    Args:
-        size: the size of square (int)
-    Return:
-        Nothing
     """
     if not isinstance(size, int):
         raise TypeError("size must be an integer")
