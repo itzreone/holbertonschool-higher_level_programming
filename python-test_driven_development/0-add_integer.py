@@ -4,9 +4,7 @@
 
 def add_integer(a, b=98):
     """
-    adds an integer
-    unit tests located in tests/0-add_integer.txt
-    checks for type errors
+    a module for adding two integer
     """
     if isinstance(a, (int, float)) is False:
         raise TypeError('a must be an integer')
