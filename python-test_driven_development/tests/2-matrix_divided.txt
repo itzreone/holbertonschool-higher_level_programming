@@ -1,11 +1,3 @@
-=============================
-Test cases for matrix_divided
-=============================
-
-:param matrix: list
-:param div: int
-:return: list
-
 >>> matrix = [
 ... 	[1, 2, 3],
 ... 	[4, 5, 6]

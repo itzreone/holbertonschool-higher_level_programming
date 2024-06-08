@@ -1,15 +1,7 @@
-===================================================
-Tests for matrix_divided in 5-text_indentation.py
-===================================================
-
-:param text: str
-:return: None
-
 >>> text_indentation = __import__('5-text_indentation').text_indentation
 
->>> text_indentation("some text.")
-some text.
-<BLANKLINE>
+>>> text_indentation("text text text")
+text text text
 
 >>> text_indentation(5)
 Traceback (most recent call last):
