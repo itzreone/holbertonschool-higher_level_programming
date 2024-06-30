@@ -1,30 +1,17 @@
 #!/usr/bin/python3
 """
-Preventing SQL injection by Parametrized Queries
+Connecting to database and listing it
 """
-import MySQLdb
-import sys
 
 if __name__ == "__main__":
-    mysql_username = sys.argv[1]
-    mysql_password = sys.argv[2]
-    database_name = sys.argv[3]
-    searched_state = sys.argv[4]
+    import MySQLdb
+    from sys import argv
 
-    db = MySQLdb.connect(
-            host="localhost",
-            port=3306,
-            user=mysql_username,
-            passwd=mysql_password,
-            db=database_name
-    )
+    db = MySQLdb.connect(user=argv[1], passwd=argv[2], db=argv[3])
     cur = db.cursor()
-    query = "SELECT * FROM states WHERE name LIKE BINARY %s ORDER BY id ASC"
-    cur.execute(query, (searched_state,))
-    result = cur.fetchall()
+    cur.execute("""SELECT * FROM `states`""")
 
-    for row in result:
-        print(row)
+    [print(state) for state in cur.fetchall() if state[1] == argv[4]]
 
     cur.close()
     db.close()
