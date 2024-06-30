@@ -1,37 +1,25 @@
 #!/usr/bin/python3
 """
-This script fetches all the states from the database and prints them.
+Cities
 """
 
-import sys
-from model_state import Base, State
-from model_city import City
-
+from sys import argv
 from sqlalchemy import create_engine
-from sqlalchemy.orm import Session
+from sqlalchemy.orm import sessionmaker
+
+from model_city import City
+from model_state import State
 
 if __name__ == "__main__":
-    """
-    Main entry point of the script.
-    """
+    engine = create_engine("mysql+mysqldb://{}:{}@localhost/{}".format(
+        argv[1], argv[2], argv[3]
+        ), pool_pre_ping=True)
+    Session = sessionmaker(bind=engine)
+    session = Session()
 
-    engine = create_engine(
-        "mysql+mysqldb://{}:{}@localhost/{}".format(
-            sys.argv[1], sys.argv[2], sys.argv[3]
-        ),
-        pool_pre_ping=True,
-    )
-    Base.metadata.create_all(engine)
-
-    session = Session(engine)
-
-    query = (
-        session.query(State, City)
-        .join(City, State.id == City.state_id)
-        .order_by(City.id)
-        .all()
-    )
-    for state, city in query:
-        print("{}: ({}) {}".format(state.name, city.id, city.name))
-
-    session.close()
+    rows = session.query(City, State).filter(
+            City.state_id == State.id
+            ).order_by(City.id)
+    [print("{}: ({}) {}".format(
+        state.name, city.id, city.name
+        )) for city, state in rows]
