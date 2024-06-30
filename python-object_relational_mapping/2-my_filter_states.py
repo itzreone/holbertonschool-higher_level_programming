@@ -1,33 +1,31 @@
 #!/usr/bin/python3
 """
-Connecting to database and listing it
+Sript that takes in an argument and displays all values in the state table
+of hbtn_0e_0_usa where name matches the argument.
 """
+import MySQLdb
+import sys
 
 if __name__ == "__main__":
-    import MySQLdb
-    from sys import argv
+    mysql_username = sys.argv[1]
+    mysql_password = sys.argv[2]
+    database_name = sys.argv[3]
+    searched_state = sys.argv[4]
 
     db = MySQLdb.connect(
             host="localhost",
             port=3306,
-            user=argv[1],
-            passwd=argv[2],
-            db=argv[3]
-            )
+            user=mysql_username,
+            passwd=mysql_password,
+            db=database_name
+    )
     cur = db.cursor()
+    cur.execute("""SELECT * FROM states WHERE name LIKE BINARY '{}'
+                ORDER BY id ASC""".format(searched_state))
+    result = cur.fetchall()
 
-    try:
-        query = """
-        SELECT * FROM states WHERE name='{:s}' ORDER BY states.id
-        """
-        cur.execute(query.format(argv[4]))
-        rows = cur.fetchall()
-    except MySQLdb.Error as e:
-        print(e)
-
-    for row in rows:
-        if row[1] == argv[4]:
-            print(row)
+    for row in result:
+        print(row)
 
     cur.close()
     db.close()
